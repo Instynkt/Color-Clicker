@@ -23,6 +23,9 @@
                 display: inline-block;
                 border-radius: 10px;
             }
+            #yellow, #red, #blue, #blank {
+                border: 1px solid black;
+            }
             #yellow {
                 background-color: yellow;
             }
@@ -32,11 +35,15 @@
             #blue {
                 background-color: blue;
             }
+            #blank {
+                background-color: white;
+            }
             .howtoplay {
-                
+                font-family: Verdana;
+                font-size: 20px;
             }
             button {
-                font-size: 15px;
+                font-size: 25px;
                 border-color: white;
                 float: left;
                 border-width: 1px;
@@ -48,6 +55,9 @@
             .buttongroup button:hover {
                 background-color: rgb(200, 100, 300);
             }
+            .closing {
+                background-color: rgb(20, 200, 300);
+            }
         </style>
     </head>
     <body>
@@ -55,7 +65,7 @@
         <h3>By: Tim Zou, Alvyn Wang, Jeremy Chiu</h3>
         <div class="square" id="yellow">
         </div>
-        <div class="square" id="red">
+        <div class="square" id="blank">
         </div>
         <div class="square" id="blue">
         </div>
@@ -64,12 +74,12 @@
         </div>
         <div class="square" id="yellow">
         </div>
-        <div class="square" id="yellow">
+        <div class="square" id="blank">
         </div>
         <br>
         <div class="square" id="blue">
         </div>
-        <div class="square" id="blue">
+        <div class="square" id="blank">
         </div>
         <div class="square" id="red">
         </div>
@@ -79,16 +89,24 @@
                 <li>The goal of the game is to survive as long as possible</li>
                 <li>The timer at the top of the screen will be the amount of seconds you have left</li>
                 <li>There are a total of 3 colors of blocks: red, yellow, and blue</li>
-                <li>Red subtracts 5 seconds from your playing time, yellow adds 2 seconds, and blue adds 5 seconds</li>
+                <li>Red subtracts 10 seconds from your playing time, yellow subtract 3 seconds, and blue adds 10 seconds</li>
                 <li>Click the blocks to make them disappear</li>
-                <li>These colored blocks will randomely pop up every couple of seconds in the 3 by 3 grid</li>
+                <li>These blocks will randomely pop up every couple of seconds</li>
                 <li>The blocks disappear after a while, so make sure to be fast</li>
+                <li>As time goes on, the game will slowly become harder</li>
             </ul>
         </div>
-        <!-- get faggot to help with this button, and the one to start the game -->
         <div class="buttongroup">
-            <button onclick="nextPage()">About the Creators</button>
             <button onclick="nextGame()">Play Game</button>
+            <button onclick="nextPage()">About the Creators</button>
+        </div>
+        <br>
+        <div class="closing">
+            <h4>For More Info: </h4>
+            <p>... ... ... ... ... ...</p>
+            <p>... ... ... ... ... ...</p>
+            <p>... ... ... ... ... ...</p>
+            <p>There's no more info</p>
         </div>
     </body>
 </html>
