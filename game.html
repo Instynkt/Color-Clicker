@@ -2,8 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="game.css">
 	<title>The Game</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery-3.2.0.js"></script>
+	<script type ="text/javascript" src="script.js"></script>
+	<script>
+		var start = new Date;
+
+		setInterval(function() {
+    	$('.Timer').text((new Date - start) / 1000 + " Seconds");
+		}, 1000);
+	</script>
 </head>
 <body>
 	<div class="box">
