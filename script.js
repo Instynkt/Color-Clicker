@@ -1,6 +1,7 @@
 $(document).ready(function() { 
 	var count = parseInt($('#clock').html());
 	var score = 0;
+	var ended = false;
 	function newTile (tile) {
 		function multiplier () {
 			if (score <= 28) {
@@ -25,33 +26,50 @@ $(document).ready(function() {
 	      count = (count - 1);
 	      $('#clock').html(count);
 	    } else {
-	      clearInterval(timer);
-	      $('#clock').html("Time's Up");
+	    	ended = true;
+		    clearInterval(timer);
+		    clearInterval(otherTimer);
+		    clearInterval(tileSetter);
+		    $('#clock').html("Time's Up");
 	    }
 	}
-	
-	var timer = setInterval(function() {
 
+	function newTiles () {
 		checkIfAlive();
-	    for (var i = 0; i < 9; i++) {
-	    	var asdf = i;
-	    	var asdfg = '#';
-	    	var asdf2 = asdfg.concat(asdf, "");
-	    	newTile(asdf2);
+	    if (!ended) {
+	    	for (var i = 0; i < 9; i++) {
+		    	var asdf = i;
+		    	var asdfg = '#';
+		    	var asdf2 = asdfg.concat(asdf, "");
+		    	newTile(asdf2);
+    		}
     	}
-    	score++;
-    	$('#score').html(score);
-  	}, 500);
+	}
+	var speed = 1000;
+	var tileSetter = setInterval(function () {
+		newTiles();
+	}, speed);
+	var timer = setInterval(function() {
+		speed *= 0.98;
+		clearInterval(tileSetter);
+		tileSetter = setInterval(function () {
+			newTiles();
+		}, speed);
+  	}, 1800);
   	$('div').click(function () {
   		var color = $(this);
   		if (color.hasClass('red')) {
-  			count -= 10;
+  			count -= 6;
   		} else if (color.hasClass('yellow')) {
-  			count -= 3;
+  			count -= 1;
   		} else if (color.hasClass('blue')) {
-  			count += 20;
+  			count += 6;
   		}
   		newTile(color);
   		checkIfAlive();
   	});
+  	var otherTimer = setInterval(function() {
+  		score++;
+  		$('#score').html(score);
+  	}, 1000);
 });
