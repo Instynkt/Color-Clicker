@@ -25,3 +25,10 @@
 {
 	background-color: yellow;
 }
+button {
+	border: 1px solid black;
+	cursor: pointer;
+}
+button button:hover {
+	background-color: rgb(300, 100, 200);
+}
