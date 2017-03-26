@@ -1,2 +1,1 @@
-# Instynkt.github.io
-hehe xd
+version of the game where you press keys instead of clicking on the thing
