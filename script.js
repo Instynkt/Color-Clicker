@@ -2,6 +2,8 @@ $(document).ready(function() {
 	var count = parseInt($('#clock').html());
 	var score = 0;
 	var ended = false;
+	var dropSpeed = 1;
+	var clickTime;
 	function newTile (tile) {
 		function multiplier () {
 			if (score <= 28) {
@@ -23,7 +25,7 @@ $(document).ready(function() {
 
 	function checkIfAlive () {
 		if (count > 0) {
-	      count = (count - 1);
+	      count -= dropSpeed;
 	      $('#clock').html(count);
 	    } else {
 	    	ended = true;
@@ -67,6 +69,11 @@ $(document).ready(function() {
   		}
   		newTile(color);
   		checkIfAlive();
+  		clearTimeout(clickTime);
+  		dropSpeed = 1;
+  		clickTime = setTimeout(function () {
+  			dropSpeed *= 3;
+  		}, 2000);
   	});
   	var otherTimer = setInterval(function() {
   		score++;
