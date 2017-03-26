@@ -6,6 +6,13 @@
 	display: inline-block;
 	border-radius: 35px;
 }
+#clock
+{
+	padding-left: 35vh;
+	font-family: Verdana;
+	font-size: 50px;
+	font-style: bold;
+}
 .red
 {
 	background-color: red;
