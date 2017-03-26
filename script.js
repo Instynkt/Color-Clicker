@@ -1,5 +1,5 @@
 function startButton () {
-	var count = parseInt($('#clock').html());
+	var count = 30;
 	var score = 0;
 	var ended = false;
 	var dropSpeed = 1;
