@@ -1,4 +1,4 @@
-$(document).ready(function() { 
+function startButton () {
 	var count = parseInt($('#clock').html());
 	var score = 0;
 	var ended = false;
@@ -59,24 +59,26 @@ $(document).ready(function() {
 		}, speed);
   	}, 1800);
   	$('div').click(function () {
-  		var color = $(this);
-  		if (color.hasClass('red')) {
-  			count -= 6;
-  		} else if (color.hasClass('yellow')) {
-  			count -= 1;
-  		} else if (color.hasClass('blue')) {
-  			count += 6;
+  		if (!ended) {
+  			var color = $(this);
+	  		if (color.hasClass('red')) {
+	  			count -= 6;
+	  		} else if (color.hasClass('yellow')) {
+	  			count -= 1;
+	  		} else if (color.hasClass('blue')) {
+	  			count += 6;
+	  		}
+	  		newTile(color);
+	  		checkIfAlive();
+	  		clearTimeout(clickTime);
+	  		dropSpeed = 1;
+	  		clickTime = setTimeout(function () {
+	  			dropSpeed *= 3;
+	  		}, 2000);
   		}
-  		newTile(color);
-  		checkIfAlive();
-  		clearTimeout(clickTime);
-  		dropSpeed = 1;
-  		clickTime = setTimeout(function () {
-  			dropSpeed *= 3;
-  		}, 2000);
   	});
   	var otherTimer = setInterval(function() {
   		score++;
   		$('#score').html(score);
   	}, 1000);
-});
+}
