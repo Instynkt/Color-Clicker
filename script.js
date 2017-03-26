@@ -1,10 +1,11 @@
 function level1 () {
-	$('#clock').html("10");
 	var count = parseInt($('#clock').html());
 	var score = 0;
 	var ended = false;
 	var dropSpeed = 1;
+	var combo = 0;
 	var clickTime;
+	var resetCombo = false;
 	function newTile (tile) {
 		function multiplier () {
 			if (score <= 28) {
@@ -57,6 +58,11 @@ function level1 () {
 		tileSetter = setInterval(function () {
 			newTiles();
 		}, speed);
+		if (resetCombo) {
+			combo = 0;
+		}
+		resetCombo = true;
+		$('#combo').html(combo);
   	}, 1800);
   	var otherTimer = setInterval(function() {
   		score++;
@@ -75,11 +81,16 @@ function level1 () {
 					var color = $(asdff2.concat(asdff, ""));
 					if (color.hasClass('red')) {
 			  			count -= 6;
+			  			combo = 0;
 			  		} else if (color.hasClass('yellow')) {
 			  			count -= 1;
+			  			combo = 0;
 			  		} else if (color.hasClass('blue')) {
-			  			count += 6;
+			  			count += 6 + combo;
+			  			combo++;
+			  			resetCombo = false;
 			  		}
+			  		$('#combo').html(combo);
 			  		newTile(color);
 			  		checkIfAlive();
 			  		clearTimeout(clickTime);
