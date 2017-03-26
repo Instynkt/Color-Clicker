@@ -1,4 +1,5 @@
 function startButton () {
+	$('#clock').html("10");
 	var count = parseInt($('#clock').html());
 	var score = 0;
 	var ended = false;
