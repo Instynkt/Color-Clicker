@@ -1,13 +1,21 @@
 $(document).ready(function() { 
 	var count = parseInt($('#clock').html());
+	var score = 0;
 	function newTile (tile) {
-		var x = Math.floor(Math.random() * 3);
+		function multiplier () {
+			if (score <= 28) {
+				return 3 - (score / 44);
+			} else {
+				return 2.3;
+			}
+		}
+		var x = Math.floor(Math.random() * multiplier());
     	if (x == 0) {
     		$(tile).removeClass('blue').removeClass('yellow').addClass('red');
     	} else if (x == 1) {
-    		$(tile).removeClass('yellow').removeClass('red').addClass('blue');
+    		$(tile).removeClass('blue').removeClass('red').addClass('yellow');
     	} else if (x == 2) {
-    		$(tile).removeClass('red').removeClass('blue').addClass('yellow');
+    		$(tile).removeClass('red').removeClass('yellow').addClass('blue');
     	}
     	//$(asdf2).html(x);
 	}
@@ -24,31 +32,24 @@ $(document).ready(function() {
 	
 	var timer = setInterval(function() {
 
-		var time = 0;
-	    //count = parseInt($('#clock').html());
-	    if (count > 0) {
-	      count = (count - 1);
-	      $('#clock').html(count);
-	    } else {
-	      clearInterval(timer);
-	      $('#clock').html("Time's Up");
-	    }
+		checkIfAlive();
 	    for (var i = 0; i < 9; i++) {
 	    	var asdf = i;
 	    	var asdfg = '#';
 	    	var asdf2 = asdfg.concat(asdf, "");
 	    	newTile(asdf2);
     	}
-  	}, 1000);
+    	score++;
+    	$('#score').html(score);
+  	}, 500);
   	$('div').click(function () {
   		var color = $(this);
   		if (color.hasClass('red')) {
   			count -= 10;
   		} else if (color.hasClass('yellow')) {
-  			count += 3;
+  			count -= 3;
   		} else if (color.hasClass('blue')) {
-  			score += 10;
-  			updateScore();
+  			count += 20;
   		}
   		newTile(color);
   		checkIfAlive();
